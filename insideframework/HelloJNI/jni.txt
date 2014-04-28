@@ -1,0 +1,19 @@
+###########################
+java 
+static {System.loadLibrary("XXXXjni");}
+
+
+###########################
+jnilib
+
+onload.cpp
+extern "C" jint JNI_OnLoad(JavaVM* vm, void* reserved)
+{
+	register_android_server_location_LocationProvider(env);
+}
+
+jni.cpp
+int register_android_server_location_LocationProvider(JNIEnv* env)
+{
+	    return jniRegisterNativeMethods(env, "com/android/server/location/LocationProvider", sMethods, NELEM(sMethods));
+}
